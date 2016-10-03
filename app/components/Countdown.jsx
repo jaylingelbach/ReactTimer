@@ -10,8 +10,10 @@ var Countdown = React.createClass({
       countdownStatus: 'stopped'
     };
   },
-  //part of React it is a component life cycle method. We use this to keep track of the countDownStatus
+  //part of React is a component life cycle method. We use this to keep track of the countDownStatus
   //gets called after props or state update. passed two args. previous props and previous state.
+
+  // check just after update happens
   componentDidUpdate: function (prevProps, prevState) {
       if (this.state.countdownStatus !== prevState.countdownStatus) {
         switch (this.state.countdownStatus) {
@@ -27,6 +29,10 @@ var Countdown = React.createClass({
         }
       }
     },
+    componentWillUnmount: function () {
+      console.log('componentDidUnmount');
+      this.timer = undefined;
+    },
   //first arg setInterval second is the time in ms.
   startTimer: function () {
     this.timer = setInterval(() => {
@@ -34,6 +40,9 @@ var Countdown = React.createClass({
       this.setState({
         count: newCount >= 0 ? newCount : 0
       });
+      if(newCount === 0) {
+        this.setState({countdownStatus: 'stopped'});
+      }
     }, 1000);
   },
   // called when form submitted with valid data. Passed with new number of seconds.
