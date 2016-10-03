@@ -53,6 +53,7 @@ var Countdown = React.createClass({
       countdownStatus: 'started'
     });
   },
+
   handleStatusChange: function (newStatus) {
       this.setState({countdownStatus: newStatus});
     },
