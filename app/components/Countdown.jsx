@@ -4,7 +4,7 @@ var CountdownForm = require('CountdownForm');
 var Controls = require('Controls');
 
 var Countdown = React.createClass({
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       count: 0,
       countdownStatus: 'stopped'
@@ -68,6 +68,7 @@ var Countdown = React.createClass({
         };
     return (
       <div>
+        <h1 className="page-title">Countdown App</h1>
         <Clock totalSeconds={count}/>
         {renderControlArea()}
       </div>
